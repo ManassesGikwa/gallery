@@ -9,10 +9,12 @@ pipeline {
     }
     
     environment {
-        // Define any environment variables here
-        NODE_ENV = 'production'
-    }
 
+        DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-crokmpq3esus73c2l28g?key=JW8QiKgPwWA' 
+        RENDER_API_KEY = credentials('render-api-key') // Store your Render API key in Jenkins credentials
+        SERVICE_ID = '' // Replace with your Render service ID
+        RENDER_URL = '' // Render API endpoint for deployment
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -44,6 +46,18 @@ pipeline {
                 // sh 'npm run build'
                 echo "Building the repo..."
             }
+        }
+        stage('Deploying to Render') {
+            steps {
+                script {
+                    def response = sh(script: """
+                        curl -X POST ${DEPLOY_HOOK_URL}
+                    """, returnStdout: true).trim()
+                    
+                    echo "Deployment Response: ${response}"
+                }
+            }
+            
         }
 
     }
