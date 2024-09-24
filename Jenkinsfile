@@ -59,19 +59,20 @@ pipeline {
             }
             
         }
-        stage('Slack Notifications') { 
-            steps {
-                slackSend(
-                    botUser: true, 
-                    channel: 'CHANN', 
-                    color: '#',  // Green for success
-                    message: "App deployed to Render successfully! Build ID: ${env.BUILD_ID}. This is the site: SITE", 
-                    teamDomain: 'WorkSpce', 
-                    tokenCredentialId: 'slackAuth'
+        stage('Slack Notifications') {
+            // Slack notification for successful deployment
+            steps{
+            slackSend(
+                botUser: true, 
+                channel: 'C07NKNCGNP8',
+                color: '#A020F0',
+                message: "App deployed to Render successfully! Build ID: ${env.BUILD_ID}. This is the site: https://gallery-nwrv.onrender.com",
+                teamDomain: 'DevopsProject',
+                tokenCredentialId: 'slackconnection',
+                username: 'jenkins'
                 )
             }
         }
-
     }
 
     post {
