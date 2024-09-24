@@ -59,6 +59,18 @@ pipeline {
             }
             
         }
+        stage('Slack Notifications') { 
+            steps {
+                slackSend(
+                    botUser: true, 
+                    channel: 'CHANN', 
+                    color: '#',  // Green for success
+                    message: "App deployed to Render successfully! Build ID: ${env.BUILD_ID}. This is the site: SITE", 
+                    teamDomain: 'WorkSpce', 
+                    tokenCredentialId: 'slackAuth'
+                )
+            }
+        }
 
     }
 
