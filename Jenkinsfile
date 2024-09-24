@@ -66,7 +66,7 @@ pipeline {
                 botUser: true, 
                 channel: 'C07NKNCGNP8',
                 color: '#A020F0',
-                message: "App deployed to Render successfully! Build ID: ${env.BUILD_ID}. This is the site: https://gallery-nwrv.onrender.com",
+                message: "Our App has deployed to Render successfully! Build ID: ${env.BUILD_ID}. This is the site: https://gallery-nwrv.onrender.com",
                 teamDomain: 'DevopsProject',
                 tokenCredentialId: 'slackconnection',
                 username: 'jenkins'
